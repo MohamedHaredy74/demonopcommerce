@@ -7,45 +7,64 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage {
     private WebDriver driver;
-    private HomePage homePage;
-    By emailField    = By.id("Email");
-    By passwordField = By.id("Password");
-    By loginBtn = By.xpath("//button[contains(text(),'Log')]");
-    By logoutIcon = By.className("ico-logout");
-    By unSuccessLoginMessage =By.xpath("//div[contains(text(),'Login was unsuccessful')]");
-    By emailErrorMessage = By.id("Email-error");
-
     public LoginPage(WebDriver driver)
     {
         this.driver=driver;
     }
+    private WebElement emailField()
+    {
+        return driver.findElement(By.id("Email"));
+    }
+    private WebElement passwordField()
+    {
+        return driver.findElement(By.id("Password"));
+    }
+
+    private WebElement loginButton()
+    {
+        return driver.findElement(By.xpath("//button[contains(text(),'Log')]"));
+    }
+    private WebElement logoutIcon()
+    {
+       return driver.findElement(By.cssSelector("a[class='ico-logout']"));
+    }
+    private WebElement unSuccessLoginMessage()
+    {
+        return driver.findElement(By.xpath("//div[contains(text(),'Login was unsuccessful')]"));
+    }
+    private WebElement emailErrorMessage()
+    {
+        return driver.findElement(By.id("Email-error"));
+    }
+
+
+
+
     public void setEmail(String email)
     {
-        driver.findElement(emailField).sendKeys(email);
+        emailField().sendKeys(email);
     }
     public void setPassword(String pass)
     {
-        driver.findElement(passwordField).sendKeys(pass);
+        passwordField().sendKeys(pass);
     }
     public HomePage clickLoginBtn()
     {
-        driver.findElement(loginBtn).click();
+        loginButton().click();
         return new HomePage(driver);
     }
 
-
-    public WebElement getLogoutIcon()
-    {
-        return driver.findElement(logoutIcon);
-    }
-
-    public String getUnSuccessLoginMessage()
-    {
-        return driver.findElement(unSuccessLoginMessage).getText();
-    }
     public String getEmailErrorMessage()
     {
-        return driver.findElement(emailErrorMessage).getText();
+        return emailErrorMessage().getText();
+    }
+    public String getUnSuccessLoginMessage()
+    {
+       return unSuccessLoginMessage().getText();
+    }
+    public boolean logoutIconIsDisplayed()
+    {
+        return logoutIcon().isDisplayed();
     }
 
 

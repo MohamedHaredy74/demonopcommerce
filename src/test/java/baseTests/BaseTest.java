@@ -28,7 +28,7 @@ public class BaseTest {
         driver =new ChromeDriver();
         driver.navigate().to(demoLink);
         driver.manage().window().fullscreen();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         homePage=new HomePage(driver);
     }
 
