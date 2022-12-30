@@ -1,5 +1,4 @@
 package baseTests;
-
 import com.google.common.io.Files;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.OutputType;
@@ -11,10 +10,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import pages.HomePage;
-
 import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
+
 
 public class BaseTest {
     private WebDriver driver;
@@ -28,7 +26,6 @@ public class BaseTest {
         driver =new ChromeDriver();
         driver.navigate().to(demoLink);
         driver.manage().window().fullscreen();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         homePage=new HomePage(driver);
     }
 

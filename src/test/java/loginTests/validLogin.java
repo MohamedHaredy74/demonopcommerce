@@ -1,3 +1,5 @@
+package loginTests;
+
 import baseTests.BaseTest;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -13,8 +15,8 @@ public class validLogin extends BaseTest {
       login.setPasswordField(validPassword);
       var myAccount=login.clickLoginButton();
         SoftAssert softAssert=new SoftAssert();
-        softAssert.assertTrue(myAccount.getURL().contains("fuck"),"error with url assertion");
-        softAssert.assertTrue(myAccount.isMyAccountDisplayed(),"error with myAccount assertion");
+        softAssert.assertTrue(myAccount.getURL().contains(" https://demo.nopcommerce.com"),"Error with url assertion");
+        softAssert.assertTrue(myAccount.isMyAccountDisplayed(),"Error with myAccount assertion");
         softAssert.assertAll();
 
     }

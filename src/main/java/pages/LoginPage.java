@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
 
 
 public class LoginPage {
@@ -11,61 +11,27 @@ public class LoginPage {
     {
         this.driver=driver;
     }
-    private WebElement emailField()
-    {
-        return driver.findElement(By.id("Email"));
-    }
-    private WebElement passwordField()
-    {
-        return driver.findElement(By.id("Password"));
-    }
+    private By emailField =By.id("Email");
+    private By passwordField=By.id("Password");
+    private By loginButton=By.xpath("//button[contains(text(),'Log')]");
 
-    private WebElement loginButton()
-    {
-        return driver.findElement(By.xpath("//button[contains(text(),'Log')]"));
-    }
-    private WebElement logoutIcon()
-    {
-       return driver.findElement(By.cssSelector("a[class='ico-logout']"));
-    }
-    private WebElement unSuccessLoginMessage()
-    {
-        return driver.findElement(By.xpath("//div[contains(text(),'Login was unsuccessful')]"));
-    }
-    private WebElement emailErrorMessage()
-    {
-        return driver.findElement(By.id("Email-error"));
-    }
+    private By emailErrorMessage=By.id("Email-error");
+
+
+    public void setEmailField(String email)
+    {driver.findElement(emailField).sendKeys(email);}
+    public void setPasswordField(String password)
+    {driver.findElement(passwordField).sendKeys(password);}
+    public MyAccountPage clickLoginButton()
+    {driver.findElement(loginButton).click();
+    return new MyAccountPage(driver);}
 
 
 
 
-    public void setEmail(String email)
-    {
-        emailField().sendKeys(email);
-    }
-    public void setPassword(String pass)
-    {
-        passwordField().sendKeys(pass);
-    }
-    public HomePage clickLoginBtn()
-    {
-        loginButton().click();
-        return new HomePage(driver);
-    }
 
-    public String getEmailErrorMessage()
-    {
-        return emailErrorMessage().getText();
-    }
-    public String getUnSuccessLoginMessage()
-    {
-       return unSuccessLoginMessage().getText();
-    }
-    public boolean logoutIconIsDisplayed()
-    {
-        return logoutIcon().isDisplayed();
-    }
+
+
 
 
 
